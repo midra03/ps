@@ -1,11 +1,10 @@
-fn permutation(s: &Vec<char>, used: Vec<bool>) -> Vec<String> {
+fn permutation(s: &Vec<char>, used: i32) -> Vec<String> {
     let mut ret = vec![];
-    for i in 0..used.len() {
-        if used[i] {
+    for i in 0..s.len() {
+        if (used & (1 << i)) != 0 {
             continue;
         }
-        let mut nused = used.clone();
-        nused[i] = true;
+        let nused = used | (1 << i);
         let tmp = permutation(s, nused);
         for t in tmp {
             ret.push(format!("{}{}", s[i], t));
@@ -19,5 +18,5 @@ fn permutation(s: &Vec<char>, used: Vec<bool>) -> Vec<String> {
 
 fn main() {
     let s = "abcd".chars().collect();
-    println!("{:?}", permutation(&s, vec![false; 4]));
+    println!("{:?}", permutation(&s, 0));
 }
