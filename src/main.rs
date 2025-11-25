@@ -1,4 +1,8 @@
-use std::io::{stdin, Write, Read};
+use std::{io::{Read, Write, stdin}, str::{FromStr, SplitAsciiWhitespace}};
+
+fn scan<T: FromStr>(it: &mut SplitAsciiWhitespace) -> Result<T, T::Err> {
+    return it.next().unwrap().parse::<T>();
+}
 
 fn main() {
     let mut input = String::new();
