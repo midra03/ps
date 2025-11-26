@@ -1,7 +1,7 @@
 use std::{io::{Read, Write, stdin}, str::{FromStr, SplitAsciiWhitespace}};
 
-fn scan<T: FromStr>(it: &mut SplitAsciiWhitespace) -> Result<T, T::Err> {
-    return it.next().unwrap().parse::<T>();
+fn scan<T: FromStr>(it: &mut SplitAsciiWhitespace) -> T {
+    return it.next().unwrap().parse::<T>().ok().unwrap();
 }
 
 fn main() {
